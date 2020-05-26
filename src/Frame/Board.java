@@ -12,6 +12,10 @@ public class Board {
     private int WIDTH, HEIGHT;
     private String TITLE;
     private boolean isVisible;
+    private double total;
+
+    public JPanel panel = new JPanel();
+    public JLabel lblCaption = new JLabel("Caption");
 
     public Board(JFrame frame, int width, int height, String title, boolean visible, JMenuBar menubar){
         this.frame = frame;
@@ -28,6 +32,10 @@ public class Board {
          */
         this.frame.setSize(this.WIDTH, this.HEIGHT);
         this.frame.setTitle(this.TITLE);
+        Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
+        this.frame.setLocation(dim.width/2-this.frame.getSize().width/2, dim.height/2 - this.frame.getSize().height/2);
+        this.panel.add(this.lblCaption);
+        this.frame.getContentPane().add(panel, BorderLayout.SOUTH);
         this.frame.setVisible(this.isVisible);
 
     }
@@ -68,6 +76,23 @@ public class Board {
 
     public void addTextToFrame(JFrame frame, JTextArea text){
         frame.getContentPane().add(text, BorderLayout.CENTER);
+    }
+
+    public void setTotal(double total){
+        /**
+         * Set the total of every product purchased
+         * :param:: Total: Double
+         * :return:: None
+         */
+        this.total = total;
+    }
+
+    public double getTotal(){
+        /**
+         * Return the total of the purchase
+         * :return:: Double
+         */
+        return total;
     }
 
 
